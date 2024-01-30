@@ -3,11 +3,21 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import {
+  connectorsForWallets,
+  getDefaultWallets,
+  RainbowKitProvider,
+} from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { mainnet, polygon, bsc, goerli, bscTestnet } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+
+import {
+  trustWallet,
+  coinbaseWallet,
+  metaMaskWallet,
+} from "@rainbow-me/rainbowkit/wallets";
 
 import "@rainbow-me/rainbowkit/styles.css";
 
@@ -23,12 +33,29 @@ const { chains, publicClient } = configureChains(
   ]
 );
 
-const { connectors } = getDefaultWallets({
-  appName: process.env.REACT_APP_NAME || "NFT Leverage Trading",
-  projectId:
-    process.env.REACT_APP_PROJECT_ID || "698cc4759eac37f938534cecb46644df",
-  chains,
-});
+// const { connectors } = getDefaultWallets({
+//   appName: process.env.REACT_APP_NAME || "NFT Leverage Trading",
+//   projectId:
+//     process.env.REACT_APP_PROJECT_ID || "698cc4759eac37f938534cecb46644df",
+//   chains,
+// });
+
+const projectId =
+  process.env.REACT_APP_PROJECT_ID || "698cc4759eac37f938534cecb46644df";
+
+const connectors = connectorsForWallets([
+  {
+    groupName: "My Wallets",
+    wallets: [
+      metaMaskWallet({ chains, projectId }),
+      trustWallet({ chains, projectId }),
+      coinbaseWallet({
+        appName: process.env.REACT_APP_NAME || "NFT Leverage Trading",
+        chains,
+      }),
+    ],
+  },
+]);
 
 const wagmiConfig = createConfig({
   autoConnect: true,
