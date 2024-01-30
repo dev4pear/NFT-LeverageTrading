@@ -5,7 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {
   connectorsForWallets,
-  getDefaultWallets,
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
@@ -33,15 +32,10 @@ const { chains, publicClient } = configureChains(
   ]
 );
 
-// const { connectors } = getDefaultWallets({
-//   appName: process.env.REACT_APP_NAME || "NFT Leverage Trading",
-//   projectId:
-//     process.env.REACT_APP_PROJECT_ID || "698cc4759eac37f938534cecb46644df",
-//   chains,
-// });
-
 const projectId =
   process.env.REACT_APP_PROJECT_ID || "698cc4759eac37f938534cecb46644df";
+
+const appName = process.env.REACT_APP_NAME || "NFT Leverage Trading";
 
 const connectors = connectorsForWallets([
   {
@@ -50,7 +44,7 @@ const connectors = connectorsForWallets([
       metaMaskWallet({ chains, projectId }),
       trustWallet({ chains, projectId }),
       coinbaseWallet({
-        appName: process.env.REACT_APP_NAME || "NFT Leverage Trading",
+        appName,
         chains,
       }),
     ],
