@@ -1,15 +1,52 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import { mainnet, polygon, bsc, goerli, bscTestnet } from "wagmi/chains";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+import { publicProvider } from "wagmi/providers/public";
+
+import "@rainbow-me/rainbowkit/styles.css";
+
+const { chains, publicClient } = configureChains(
+  [mainnet, goerli, bsc, bscTestnet, polygon],
+  [
+    alchemyProvider({
+      apiKey:
+        process.env.REACT_APP_ALCHEMY_API_KEY ||
+        "ekZhZsGjfWuK39pYW_YXSEcRKDN8amSN",
+    }),
+    publicProvider(),
+  ]
+);
+
+const { connectors } = getDefaultWallets({
+  appName: process.env.REACT_APP_NAME || "NFT Leverage Trading",
+  projectId:
+    process.env.REACT_APP_PROJECT_ID || "698cc4759eac37f938534cecb46644df",
+  chains,
+});
+
+const wagmiConfig = createConfig({
+  autoConnect: true,
+  connectors,
+  publicClient,
+});
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <WagmiConfig config={wagmiConfig}>
+      <RainbowKitProvider chains={chains}>
+        <App />
+      </RainbowKitProvider>
+    </WagmiConfig>
   </React.StrictMode>
 );
 
