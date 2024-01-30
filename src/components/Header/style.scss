@@ -6,6 +6,7 @@
   padding: 24px;
   background-color: #d5d2ed;
   height: 96px;
+  margin-bottom: 5px;
 
   .left {
     display: flex;
@@ -26,36 +27,5 @@
   .right {
     display: flex;
     gap: 15px;
-
-    .searchbox {
-      color: black;
-      border-radius: 15px;
-      padding: 5px 10px 5px 10px;
-      background: white;
-      width: 200px;
-    }
-
-    .disconnected {
-      display: flex;
-      background: black;
-      color: white;
-      height: 100%;
-      padding-left: 10px;
-      padding-right: 10px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      font-weight: 500;
-      border-radius: 10px;
-    }
-
-    .connected {
-      display: flex;
-      background: #bfbfd8;
-      color: white;
-      height: 100%;
-      padding: 5px;
-      font-weight: 500;
-      border-radius: 10px;
-    }
   }
 }
