@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
-import "./style.scss";
-import { useRef, useState } from "react";
-import Pattern1 from "../../assets/backPattern1.svg";
+import React, { useRef, useState } from "react";
 import { Icon } from "@iconify/react";
+
+import "./style.scss";
+import Pattern1 from "../../assets/backPattern1.svg";
+import { Collections } from "../../utils/constants";
 
 const ListItem = styled("div")({
   listStyle: "none",
@@ -131,7 +133,43 @@ const MainBody = () => {
             </div>
           </div>
         </div>
-        <div></div>
+        <div>
+          <div className="grid grid-cols-8 gap-4 mt-12 ml-2 text-xs mb-4">
+            <div className="text-[runic] ml-5">#</div>
+            <div className="text-[runic] col-span-2">Collection</div>{" "}
+            <div className="text-[runic]">Floor</div>
+            <div className="text-[runic]">Average</div>
+            <div className="text-[runic]">Ceiling</div>
+            <div className="text-[runic]">Volume</div>
+            <div className="text-[runic]">Change</div>
+          </div>
+          <div className="bg-white bg-opacity-50 flex flex-col gap-4 p-4 rounded-lg mt-8">
+            {Collections.map((item, index) => (
+              <div className="grid grid-cols-8 gap-4" key={index}>
+                <div className="p-2">{index + 1}</div>
+                <div className="flex items-center space-x-2 col-span-2">
+                  {" "}
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="rounded-lg w-12 h-12 mr-2"
+                  />
+                  <span>{item.name}</span>
+                </div>
+                <div className="p-2">{item.floor}</div>
+                <div className="p-2">{item.average}</div>
+                <div className="p-2">{item.ceiling}</div>
+                <div className="p-2">{item.volume}</div>
+                <div className="text-green-500 p-2">{item.change}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-center pt-4">
+            <div className="px-3 py-1 rounded-md border-[1px] border-gray-500">
+              See More
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
