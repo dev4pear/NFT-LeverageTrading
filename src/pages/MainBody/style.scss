@@ -4,7 +4,7 @@
 
   .content {
     display: flex;
-    padding: 96px 96px 0px 96px;
+    padding: 132px 132px 0px 132px;
 
     .left {
       width: 50%;
@@ -17,7 +17,7 @@
   }
 
   .collections {
-    padding: 48px 96px 0px 96px;
+    padding: 66px 132px 0px 132px;
 
     .col-header {
       .title {
@@ -63,6 +63,32 @@
       .right {
         width: 100%;
         padding-left: 0px;
+      }
+    }
+  }
+
+  .news {
+    padding: 66px 132px 0px 132px;
+
+    .col-header {
+      .title {
+        font-size: 44px;
+        font-weight: 700;
+      }
+      .subtitle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .nType {
+          display: flex;
+          align-items: center;
+          color: white;
+          background-color: #242424;
+          border-radius: 5px;
+          gap: 5px;
+          padding: 3px 5px 3px 5px;
+        }
       }
     }
   }

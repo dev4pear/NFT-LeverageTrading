@@ -4,7 +4,9 @@ import { Icon } from "@iconify/react";
 
 import "./style.scss";
 import Pattern1 from "../../assets/backPattern1.svg";
-import { Collections } from "../../utils/constants";
+import News from "../../assets/news.png";
+import { Collections, newsItems } from "../../utils/constants";
+import JPEG from "../../components/JPEG";
 
 const ListItem = styled("div")({
   listStyle: "none",
@@ -171,6 +173,58 @@ const MainBody = () => {
           </div>
         </div>
       </div>
+      <div className="news">
+        <div className="col-header">
+          <div className="title">News</div>
+          <div className="subtitle">
+            <p>Swap between Ethereum, Solana and Ordinals</p>
+            <div className="nType">View all posts</div>
+          </div>
+        </div>
+        <div className="flex mb-24 mt-12">
+          <div className="w-1/3 bg-[#E6E4F4] rounded-2xl rounded-tr-2xl rounded-br-2xl">
+            <img
+              src={News}
+              alt="Featured"
+              className="w-full h-2/3 object-cover rounded-lg"
+            />
+            <div className="text-black px-6 bg-[#E6E4F4] ml-4">
+              <h3 className="text-3xl font-bold mt-4">We are live!</h3>
+              <div className="mt-2 text-md">
+                In a groundbreaking moment for the world of NFTs, JPEG has
+                officially launched its highly anticipated platform, ushering in
+                a new era of...{" "}
+                <span className="text-[#6C65BE]">Read in full</span>
+              </div>
+            </div>
+          </div>
+          <div className="w-2/3 bg-[#E6E4F4] ml-16 p-6 rounded-2xl rounded-tr-2xl rounded-br-2xl flex flex-col justify-between">
+            {newsItems.map((item, index) => (
+              <React.Fragment key={index}>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="text-2xl font-semibold text-gray-500 uppercase">
+                      {item.category}
+                    </div>
+                    <div className="text-5xl md:mt-4 md:mr-34 font-bold">
+                      {item.title}
+                    </div>
+                  </div>
+                  <img
+                    src="https://via.placeholder.com/400"
+                    alt={item.title}
+                    className="w-40 h-40 object-cover rounded-lg"
+                  />
+                </div>
+                {index < newsItems.length - 1 && (
+                  <hr className="my-4 hr-white" />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </div>
+      <JPEG />
     </div>
   );
 };

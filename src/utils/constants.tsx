@@ -54,3 +54,10 @@ export const Collections = [
     change: "4%",
   },
 ];
+
+export const newsItems = [
+  { category: "Insights", title: "Example news story headline" },
+  { category: "JPEG News", title: "Example JPEG story headline" },
+  { category: "Insights", title: "Example news story headline" },
+  { category: "Insights", title: "Example news story headline?" },
+];
